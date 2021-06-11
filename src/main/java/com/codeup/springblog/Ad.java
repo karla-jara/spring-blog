@@ -17,4 +17,23 @@ public class Ad {
     //All ads have an ad.description
     @Column(nullable = false)
     private String description;
+
+    public Ad() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
