@@ -13,12 +13,12 @@
 <h4><span th:text="${guess}"></span></h4>
 
 
-<a href="/roll-dice/1">1</a>
-<a href="/roll-dice/2">2</a>
-<a href="/roll-dice/3">3</a>
-<a href="/roll-dice/4">4</a>
-<a href="/roll-dice/5">5</a>
-<a href="/roll-dice/6">6</a>
+<button type="button" class="btn btn-primary"><a href="/roll-dice/1">1</a></button>
+<button type="button" class="btn btn-primary"><a href="/roll-dice/2">2</a></button>
+<button type="button" class="btn btn-primary"><a href="/roll-dice/3">3</a></button>
+<button type="button" class="btn btn-primary"><a href="/roll-dice/4">4</a></button>
+<button type="button" class="btn btn-primary"><a href="/roll-dice/5">5</a></button>
+<button type="button" class="btn btn-primary"><a href="/roll-dice/6">6</a></button>
 
 <th:block th:if="${hasGuessed}">
     <div th:if="${userGuess == guess}">Congratulation, your guess right!</div>
