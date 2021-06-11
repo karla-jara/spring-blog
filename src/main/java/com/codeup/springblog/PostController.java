@@ -1,10 +1,14 @@
 package com.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -19,8 +23,16 @@ public class PostController {
     //view an individual post
     @GetMapping("/post{id}")
     @ResponseBody
-    public String id(@PathVariable long id){
-        return "The id number is: " + id;
+    public String id(@PathVariable long id, Model model){
+        Post post = new Post();
+        model.addAttribute("post", post);
+        return "post/show";
+    }
+
+    //view all posts
+    @GetMapping("/post{all-posts}")
+    public String allPosts(){
+       return "posts/index";
     }
 
     //view the form for creating a post
