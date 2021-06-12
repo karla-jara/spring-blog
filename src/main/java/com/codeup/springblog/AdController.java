@@ -15,6 +15,8 @@ public class AdController {
     @GetMapping("/ads")
     public String index(Model model) {
         model.addAttribute("ads", adDao.findAll());
-        return "adindex";
+        model.addAttribute("topAd", adDao.findByTitle("bicycle north side"));
+        model.addAttribute("searchAd", adDao.findByTitleLike("%childcare%"));
+        return "ad-index";
     }
 }

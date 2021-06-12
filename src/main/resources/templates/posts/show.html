@@ -2,9 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show</title>
 </head>
 <body>
+<h2>Post all posts:</h2>
+<div th:each="post : ${posts}">
+    <h3 th:text="${post.title}"></h3>
+    <p th:text="${post.body}"></p>
+</div>
+
+<h2>Post search results:</h2>
+<div>
+    <h3>You searched for 'SALR', and here are our results:</h3>
+    <h3 th:text="${searchPost.title}"></h3>
+    <p th:text="${searchPost.description}"></p>
+</div>
+
 
 </body>
 </html>

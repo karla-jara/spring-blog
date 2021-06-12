@@ -9,16 +9,19 @@ public class Ad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     //All ads have an ad.title
     @Column(nullable = false, length = 100)
     private String title;
-
     //All ads have an ad.description
     @Column(nullable = false)
     private String description;
 
     public Ad() {
+    }
+
+    public Ad(String title, String description){
+        this.title = title;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -35,5 +38,14 @@ public class Ad {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription(){
+        return description;
+
     }
 }
