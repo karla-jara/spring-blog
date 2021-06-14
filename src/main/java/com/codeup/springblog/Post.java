@@ -17,7 +17,14 @@ public class Post {
     // constructors
     public Post(){
     }
+
     public Post(String title, String body){
+        this.title = title;
+        this.body = body;
+    }
+
+    public Post(long id, String title, String body){
+        this.id= id;
         this.title = title;
         this.body = body;
     }

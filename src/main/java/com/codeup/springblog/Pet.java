@@ -13,7 +13,7 @@ public class Pet {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, columnDefinition = "unsigned")
+    @Column(nullable = false, columnDefinition = "int unsigned")
     private int age;
 
     @Column(nullable = false)
