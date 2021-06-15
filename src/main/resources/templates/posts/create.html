@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
-    <title>Posts</title>
+    <title>Create Post</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="container">
     <form action="/ads/create" method="post">

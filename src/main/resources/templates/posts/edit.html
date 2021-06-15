@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
-    <title>Edit Post</title>
+    <title>Edit Posts</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <form th:action="@{|/post/edit/${postEditedPost.id}|}" method="post">
     <div class="input-group mb-3">
