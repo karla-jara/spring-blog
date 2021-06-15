@@ -9,19 +9,25 @@ public class Ad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     //All ads have an ad.title
     @Column(nullable = false, length = 100)
     private String title;
+
     //All ads have an ad.description
     @Column(nullable = false)
     private String description;
 
+    @OneToOne
+    private User owner;
+
     public Ad() {
     }
 
-    public Ad(String title, String description){
+    public Ad(String title, String description, User owner){
         this.title = title;
         this.description = description;
+        this.owner = owner;
     }
 
     public String getTitle() {
@@ -48,4 +54,6 @@ public class Ad {
         return description;
 
     }
+
+
 }

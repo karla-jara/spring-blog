@@ -4,24 +4,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PostController {
-    private final PostRepository postDao;
+    private final PostsRepository postsDao;
+    private UsersRepository usersDao;
+    private User userPosts;
 
-    public PostController(PostRepository postDao){
-        this.postDao = postDao;
+    public PostController(PostsRepository postsRepository, UsersRepository usersRepository){
+        postsDao = postsRepository;
+        usersDao = usersRepository;
     }
 
     //posts index page
     @GetMapping("/posts")
     public String index(Model model){
-        model.addAttribute("posts", postDao.findByTitle("wonder"));
-        model.addAttribute("searchPostTitle", postDao.findByTitleLike("%cycling%"));
-        model.addAttribute("searchPostBody", postDao.findPostsByBodyContaining("%SALR%"));
-        model.addAttribute("deletePost",postDao.deletePostByTitle("wonder"));
+        List<Post> postList = postsDao.findAll();
+        model.addAttribute("noPostsFound", postList.size() == 0);
+        model.addAttribute("ads", postList);
+        model.addAttribute("posts", postsDao.findByTitle("wonder"));
+        model.addAttribute("searchPostTitle", postsDao.findByTitleLike("%cycling%"));
+        model.addAttribute("searchPostBody", postsDao.findPostsByBodyContaining("%SALR%"));
+        model.addAttribute("deletePost",postsDao.deletePostByTitle("wonder"));
 
         return "posts/index";
     }
@@ -29,7 +34,7 @@ public class PostController {
     //view an individual post
     @GetMapping("/posts/{id}")
     public String id(@PathVariable Long id, Model model){
-        Post post= postDao.getById(id);
+        Post post= postsDao.getById(id);
         model.addAttribute("post", post);
         return "posts/show";
     }
@@ -59,13 +64,13 @@ public class PostController {
     public String editForm(@PathVariable Long id, @RequestParam String title, @RequestParam String body){
 //        postDao.saveEditPost(id, title, body);
         Post post1 = new Post(id, title, body);
-        postDao.save(post1);
+        postsDao.save(post1);
         return "redirect:/posts/" + id;
     }
 
     @GetMapping("post/edit/{id}")
     public String editForm(@PathVariable Long id, Model model){
-        model.addAttribute("postEditedPost",postDao.getById( id));
+        model.addAttribute("postEditedPost",postsDao.getById( id));
         return "posts/edit";
     }
 

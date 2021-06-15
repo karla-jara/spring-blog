@@ -19,22 +19,26 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @OneToOne
+    private Post post;
+
     public User(){ }
 
     // update constructor
-    public User(long id, String email, String username, String password) {
+    public User(long id, String email, String username, String password, Post post) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.post = post;
     }
 
-
     // insert constructor
-    public User(String email, String username, String password) {
+    public User(String email, String username, String password, Post post) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.post = post;
     }
 
     public long getId() {
@@ -67,5 +71,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
