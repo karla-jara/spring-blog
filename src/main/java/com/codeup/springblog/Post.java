@@ -50,4 +50,7 @@ public class Post {
     public void setBody(){
         this.body = body;
     }
+
+    public void setOwner(User user) {
+    }
 }

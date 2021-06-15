@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head">
+<head th:replace="partials/header :: header">
     <meta charset="UTF-8">
     <title>Create Post</title>
 </head>
@@ -8,12 +8,12 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="container">
-    <form action="/ads/create" method="post">
+    <form action="/posts/create" method="post" th:object="${post}">
     <label for="title">Title</label>
-        <input id="title" name="title" />
+        <input id="title" name="title" th:field="*{title}" />
         <br />
     <label for="body">Body</label>
-        <input id="body" name="body" />
+        <input id="body" name="body" th:field="*{body}" />
         <br />
         <button class="btn btn-outline-secondary" type="submit" id="createPost">Create Post</button>
     </form>

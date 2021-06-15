@@ -22,12 +22,11 @@ public class PostController {
     public String index(Model model){
         List<Post> postList = postsDao.findAll();
         model.addAttribute("noPostsFound", postList.size() == 0);
-        model.addAttribute("ads", postList);
-        model.addAttribute("posts", postsDao.findByTitle("wonder"));
-        model.addAttribute("searchPostTitle", postsDao.findByTitleLike("%cycling%"));
+        model.addAttribute("posts", postList);
+        model.addAttribute("postsTitle", postsDao.findByTitle("wonder"));
+        model.addAttribute("searchPostTitleLike", postsDao.findByTitleLike("%cycling%"));
         model.addAttribute("searchPostBody", postsDao.findPostsByBodyContaining("%SALR%"));
-        model.addAttribute("deletePost",postsDao.deletePostByTitle("wonder"));
-
+//        model.addAttribute("deletePost",postsDao.deletePostByTitle("wonder"));
         return "posts/index";
     }
 
@@ -36,7 +35,7 @@ public class PostController {
     public String id(@PathVariable Long id, Model model){
         Post post= postsDao.getById(id);
         model.addAttribute("post", post);
-        return "posts/show";
+        return "/posts/show";
     }
 
     //view all posts
@@ -48,15 +47,21 @@ public class PostController {
     //view the form for creating a post
     @GetMapping("/posts/create")
     @ResponseBody
-    public String create(){
-        return "Viewing create form";
+    public String create(Model model){
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     //create a new post
     @PostMapping("/posts/create")
     @ResponseBody
-    public String createForm(){
-        return "Viewing and able to create form";
+    public String save(@ModelAttribute Post post){
+        User user = usersDao.getById(1L);
+//        Post newPost = new Post(title, body, user);
+        post.setOwner(user);
+        Post savedPost = postsDao.save(post);
+
+        return "posts/index";
     }
 
     // edit post

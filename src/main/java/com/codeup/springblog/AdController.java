@@ -29,15 +29,6 @@ public class AdController {
         return "ad-index";
     }
 
-
-    @GetMapping("/ads")
-    public String index(@PathVariable List<Ad> ad, Model model){
-        List<Ad> adsList = adsDao.findAll();
-        model.addAttribute("noAdsFound", adsList.size() == 0);
-        model.addAttribute("ads", adsList);
-        return "ads/index";
-    }
-
     @GetMapping("/ads/{id}")
     public String show(@PathVariable long id, Model model){
         model.addAttribute("adId", id);

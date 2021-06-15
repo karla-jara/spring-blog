@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head">
+<head th:replace="partials/header :: header">
     <meta charset="UTF-8">
     <title>Show Posts</title>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<!--<h2>Post all posts:</h2>-->
-<!--<div th:each="post : ${posts}">-->
-<!--    <h3 th:text="${post.title}"></h3>-->
-<!--    <p th:text="${post.body}"></p>-->
-<!--</div>-->
+<h2>Post all posts:</h2>
+<div th:each="post : ${post}"> <!--post should be posts -->
+    <h3 th:text="${post.title}"></h3>
+    <p th:text="${post.body}"></p>
+</div>
 
 <h2>Post search results:</h2>
 <div>
